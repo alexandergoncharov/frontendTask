@@ -6,7 +6,7 @@ import { getProfileInfo } from "../service/Profile";
 const { Title } = Typography;
 
 const Profile = () => {
-    const [name, setName] = useState("Little story about company");
+    const [name, setName] = useState("");
 
     useEffect(() => {
         const token = localStorage.getItem("userToken");
