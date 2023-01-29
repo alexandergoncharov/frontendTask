@@ -18,7 +18,7 @@ export default function UserContextProvider({ children }: Props) {
     }
 
     function logoutUser() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('userToken');
         dispatch({
             type: 'logged_out'
         });

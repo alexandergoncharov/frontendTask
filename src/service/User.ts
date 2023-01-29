@@ -6,3 +6,7 @@ export const getLoginToken = async (loginParams: LoginParams) => {
 
   return response.data.data.token;
 };
+
+export const removeLoginToken = async (token: string) => {
+  await HttpRequest.logoutUser(token);
+};
