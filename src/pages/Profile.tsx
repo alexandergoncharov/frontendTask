@@ -9,7 +9,7 @@ const Profile = () => {
     <div className="profile">
       <Avatar size={100} src={userLogo} />
       <div className="welcome">
-        <Title className="welcome-title">Welcome, {name}</Title>
+        <Title className="welcome-title">Welcome, {name}!</Title>
         <Button type="primary">Update</Button>
       </div>
     </div>
