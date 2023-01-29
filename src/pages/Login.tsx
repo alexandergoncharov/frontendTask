@@ -1,10 +1,11 @@
 import { Button, Form, Input, Typography } from "antd";
+import { loginUser } from "../service/User";
 import { LoginParams } from "../utils/types";
 
 const { Text } = Typography;
 
 const Login = () => {
-    const onFinish = (values: LoginParams) => {
+    const onFinish = async (values: LoginParams) => {
         console.log(values);
     };
 
@@ -18,6 +19,7 @@ const Login = () => {
             <Text>Email address</Text>
             <Form.Item
                 name="email"
+                extra="We'll never share your email with anyone else."
                 rules={[
                     {
                         type: "email",
@@ -30,11 +32,6 @@ const Login = () => {
                 ]}
             >
                 <Input placeholder="Enter email" />
-                <div>
-                    <Text type="secondary">
-                        We'll never share your email with anyone else.
-                    </Text>
-                </div>
             </Form.Item>
 
             <Text>Password</Text>
