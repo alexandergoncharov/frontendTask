@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <UserContextProvider>
         <Layout>
-          <Content>
+          <Content className="content">
             <NavBar />
             <Routes>
               <Route index element={<About />} />
