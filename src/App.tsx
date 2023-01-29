@@ -3,7 +3,7 @@ import { Content } from "antd/es/layout/layout";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import NavBar from "./components/NavBar";
-import UserContextProvider from "./context/UserContextProvider";
+import UserContextProvider from "./context/User/UserContextProvider";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
