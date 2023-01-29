@@ -1,14 +1,19 @@
 import { Button, Form, Input, Typography } from "antd";
-import { loginUser } from "../service/User";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import { getLoginToken } from "../service/User";
 import { LoginParams } from "../utils/types";
 
 const { Text } = Typography;
 
 const Login = () => {
-    const onFinish = async (loginParams: LoginParams) => {
-        const token = await loginUser(loginParams);
 
-        console.log(token);
+    const { loginUser } = useContext(UserContext);
+
+    const onFinish = async (loginParams: LoginParams) => {
+        const token = await getLoginToken(loginParams);
+
+        loginUser(token);
     };
 
     return (
