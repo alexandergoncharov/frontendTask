@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LoginParams, LogoutParams } from "../utils/types";
+import { LoginParams, TokenParams } from "../utils/types";
 
 const BASE_PATH = process.env.BASE_PATH || "http://localhost:8000";
 
@@ -16,9 +16,17 @@ export default class HttpRequest {
 
   static async logoutUser(token: string) {
     const url: string = BASE_PATH + "/logout";
-    const params: LogoutParams = { token };
+    const params: TokenParams = { token };
     const paramsUrl: string = axios.getUri({ url, params });
-    
+
     await axios.delete(paramsUrl);
+  }
+
+  static async getProfileInfo(token: string) {
+    const url: string = BASE_PATH + "/profile";
+    const params: TokenParams = { token };
+    const paramsUrl: string = axios.getUri({ url, params });
+
+    return await axios.get(paramsUrl);
   }
 }
