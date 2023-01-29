@@ -5,8 +5,10 @@ import { LoginParams } from "../utils/types";
 const { Text } = Typography;
 
 const Login = () => {
-    const onFinish = async (values: LoginParams) => {
-        console.log(values);
+    const onFinish = async (loginParams: LoginParams) => {
+        const token = await loginUser(loginParams);
+
+        console.log(token);
     };
 
     return (
