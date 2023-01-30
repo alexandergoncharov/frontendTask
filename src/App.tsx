@@ -3,6 +3,7 @@ import { Content } from "antd/es/layout/layout";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import NavBar from "./components/NavBar";
+import ProfileContextProvider from "./context/Profile/ProfileProvider";
 import UserContextProvider from "./context/User/UserContextProvider";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -19,7 +20,7 @@ function App() {
             <Routes>
               <Route index element={<About />} />
               <Route path="login" element={<Login />} />
-              <Route path="profile" element={<Profile />} />
+              <Route path="profile" element={<ProfileContextProvider><Profile /></ProfileContextProvider>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Content>
