@@ -1,5 +1,14 @@
-import axios from "axios";
-import { LoginParams, TokenParams } from "../utils/types";
+import axios, { AxiosResponse } from "axios";
+import {
+  AuthorResponse,
+  HttpResponse,
+  HttResponseData,
+  LoginParams,
+  PromiseCancelable,
+  QuoteParams,
+  QuoteResponse,
+  TokenParams,
+} from "../utils/types";
 
 const BASE_PATH = process.env.BASE_PATH || "http://localhost:8000";
 
@@ -28,5 +37,54 @@ export default class HttpRequest {
     const paramsUrl: string = axios.getUri({ url, params });
 
     return await axios.get(paramsUrl);
+  }
+
+  static getAuthor<Response>(
+    token: string
+  ): PromiseCancelable<HttpResponse<AuthorResponse>> {
+    const controller = new AbortController();
+    const url: string = BASE_PATH + "/author";
+    const params: TokenParams = { token };
+    const paramsUrl: string = axios.getUri({ url, params });
+
+    const request = axios
+      .get<Response, AxiosResponse<HttResponseData<Response>>>(paramsUrl, {
+        signal: controller.signal,
+      })
+      .then((response) => {
+        return response.data.data;
+      }) as PromiseCancelable<HttpResponse<AuthorResponse>>;
+
+    request.cancel = () => controller.abort();
+
+    return request;
+  }
+
+  static getQuote(
+    token: string,
+    authorPromise: Promise<HttpResponse<AuthorResponse>>
+  ): PromiseCancelable<HttpResponse<QuoteResponse>> {
+    const controller = new AbortController();
+
+    const request = authorPromise.then((authorResponse) => {
+      if (authorResponse) {
+        const { authorId } = authorResponse as unknown as AuthorResponse;
+        const url: string = BASE_PATH + "/quote";
+        const params: QuoteParams = { token, authorId };
+        const paramsUrl: string = axios.getUri({ url, params });
+
+        return axios
+          .get<Response, AxiosResponse<HttResponseData<Response>>>(paramsUrl, {
+            signal: controller.signal,
+          })
+          .then((quoteResponse) => {
+            return quoteResponse.data.data;
+          });
+      }
+    }) as PromiseCancelable<HttpResponse<QuoteResponse>>;
+
+    request.cancel = () => controller.abort();
+
+    return request;
   }
 }

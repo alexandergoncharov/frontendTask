@@ -1,7 +1,7 @@
 import { Space, Button } from "antd";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../context/User/UserContext";
 import { removeLoginToken } from "../service/User";
 
 const NavBar = () => {
