@@ -1,0 +1,31 @@
+ame: Run Node.js Script
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Specify the version of Node.js you want to use.
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Get patch
+      run: pwd
+
+    # - name: Run the Node.js script
+    #   env:
+    #     MY_ENV_VAR: 'Hello, World!'  # Set the environment variable here
+    #   run: node script.js  # Run the Node.js script
