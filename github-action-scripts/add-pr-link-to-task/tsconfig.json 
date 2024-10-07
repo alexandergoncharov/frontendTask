@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "outDir": "./github-action-scripts/add-pr-link-to-task/dist",
+    "rootDir": "./github-action-scripts/add-pr-link-to-task",
+    "strict": true
+  },
+  "include": ["github-action-scripts/add-pr-link-to-task/**/*"]
+}

@@ -21,9 +21,18 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+      working-directory: ./github-action-scripts/add-pr-link-to-task
 
-    - name: Get patch
-      run: pwd
+
+    - name: Build
+      run: npm run build
+      working-directory: ./github-action-scripts/add-pr-link-to-task
+
+    - name: Run
+      run: npm run start
+      working-directory: ./github-action-scripts/add-pr-link-to-task
+      env:
+          TITLE: ${{ github.event.pull_request.title }}
 
     # - name: Run the Node.js script
     #   env:
