@@ -1,4 +1,4 @@
-ame: Run Node.js Script
+name: Run Node.js Script
 
 on:
   push:
