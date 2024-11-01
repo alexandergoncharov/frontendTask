@@ -34,14 +34,8 @@ async function sendPrComment(): Promise<void> {
   try {
     const taskId = getTaskId();
     const comments: Comment[] = await getComments(taskId);
-    const prCommentText = `[${TITLE}](https://github.lmru.tech/${REPO_NAME}/pull/${PR_NUMBER})`;
-
-    // TODO: Remove
-    console.log(`Comments for Issue ID ${taskId}:`);
-    comments.forEach((comment) => {
-      console.log(comment.text);
-    });
-    //
+    // const prCommentText = `[${TITLE}](https://github.lmru.tech/${REPO_NAME}/pull/${PR_NUMBER})`;
+    const prCommentText = `[${TITLE}](https://github.com/${REPO_NAME}/pull/${PR_NUMBER})`;
 
     if (isPrCommentExist(comments, prCommentText)) {
       console.log(`PR comment already exist`);
