@@ -33,6 +33,8 @@ jobs:
       working-directory: ./github-action-scripts/add-pr-link-to-task
       env:
           TITLE: ${{ github.event.pull_request.title }}
+          PR_NUMBER: ${{ github.event.number }}
+          REPO_NAME: ${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}
 
     # - name: Run the Node.js script
     #   env:
