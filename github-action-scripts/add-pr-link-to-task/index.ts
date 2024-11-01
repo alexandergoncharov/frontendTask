@@ -77,7 +77,7 @@ async function addComment(commentText: string, taskId: string) {
 }
 
 function getTaskId() {
-  const regExpResult = TITLE.match(regexForTaskId);
+  const regExpResult = TITLE.toUpperCase().match(regexForTaskId);
   if (!regExpResult || regExpResult.length > 1) {
     throw new Error(`Wrong title for ${TITLE}`);
   }
