@@ -1,0 +1,42 @@
+name: Run Node.js Script
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Specify the version of Node.js you want to use.
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./github-action-scripts/add-pr-link-to-task
+
+
+    - name: Build
+      run: npm run build
+      working-directory: ./github-action-scripts/add-pr-link-to-task
+
+    - name: Run
+      run: npm run start
+      working-directory: ./github-action-scripts/add-pr-link-to-task
+      env:
+          TITLE: ${{ github.event.pull_request.title }}
+          PR_NUMBER: ${{ github.event.number }}
+          REPO_NAME: ${{ github.event.repository.full_name }}
+
+    # - name: Run the Node.js script
+    #   env:
+    #     MY_ENV_VAR: 'Hello, World!'  # Set the environment variable here
+    #   run: node script.js  # Run the Node.js script

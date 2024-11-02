@@ -1,0 +1,19 @@
+{
+  "name": "add-pr-link-to-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc index.ts",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.8.6",
+    "typescript": "^4.x.x"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}
